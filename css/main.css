@@ -1,0 +1,12 @@
+.half{
+    width: 30%;
+}
+
+.half2{
+    max-width: 50%;
+    align-content: center;
+}
+
+.width30{
+    width: 30px;
+}
