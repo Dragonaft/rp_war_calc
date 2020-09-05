@@ -10,3 +10,24 @@
 .width30{
     width: 30px;
 }
+
+.form-staff{
+    padding: 20px;
+    position: fixed; top: 50%; left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+}
+
+.mwidth70{
+    max-width: 70%;
+}
+
+.kostil1{
+    width: 30px;
+}
+
+.kostil2{
+    width: 50.8%;
+}
