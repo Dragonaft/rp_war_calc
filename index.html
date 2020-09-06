@@ -1,4 +1,4 @@
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Рп калькулятор</title>
@@ -8,59 +8,68 @@
 </head>
 <body>
 <div>
+    <div class="input-group mb-3">
+        <div class="alert alert-primary kostil3 center" role="alert">
+            Защита
+        </div>
+
+        <div class="alert alert-danger kostil3 center" role="alert">
+            Атака
+        </div>
+    </div>
     <div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Кол. воинов</span>
+                <span class="input-group-text">Кол. воинов</span>
             </div>
-            <input type="text" class="form-control kostil1" aria-label="Sizing example input"
+            <input type="text" id="def_army" class="form-control kostil1" aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-default">
             <div class="width30">
             </div>
-            <input type="text" class="form-control kostil1" placeholder="Recipient's username" aria-label="Recipient's username"
+            <input type="text" id="att_army" class="form-control kostil1" aria-label="Recipient's username"
                    aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">Кол. воинов</span>
+                <span class="input-group-text">Кол. воинов</span>
             </div>
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Эффект от баффа</span>
+                <span class="input-group-text">Эффект от баффа</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input type="text" id="def_buff" class="form-control" aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-default">
             <div class="width30">
             </div>
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+            <input type="text" id="att_buff" class="form-control" aria-label="Recipient's username"
                    aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">Эффект от баффа</span>
+                <span class="input-group-text">Эффект от баффа</span>
             </div>
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Коофициент снабжения</span>
+                <span class="input-group-text">Коофициент снабжения</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input type="text" id="def_supp" class="form-control" aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-default">
             <div class="width30">
             </div>
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+            <input type="text" id="att_supp" class="form-control" aria-label="Recipient's username"
                    aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">Коофициент снабжения</span>
+                <span class="input-group-text">Коофициент снабжения</span>
             </div>
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Здание с
+                <span class="input-group-text">Здание с
 наибольшим коофициентом защиты</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input type="text" id="def_build" class="form-control" aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-default">
             <div class="kostil1">
             </div>
-            <input type="text" style="width: 158px" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+            <input type="text" id="att_gen" style="width: 158px" class="form-control" aria-label="Recipient's username"
                    aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2"> Коофициент атаки генерала </span>
@@ -68,37 +77,58 @@
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Коофициент стены</span>
+                <span class="input-group-text">Коофициент стены</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input id="def_wall" type="text" class="form-control" aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-default">
             <div class="kostil2">
             </div>
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Коофициент защиты
-рельэфа </span>
+                <span class="input-group-text">Коофициент защиты рельэфа </span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input id="def_terran" type="text" class="form-control" aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-default">
             <div class="kostil2">
             </div>
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default"> Коофициент защиты генерала</span>
+                <span class="input-group-text"> Коофициент защиты генерала</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input id="def_gen" type="text" class="form-control" aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-default">
             <div class="kostil2">
             </div>
         </div>
     </div>
-    <div>
+    <button type="button" class="btn btn-primary btn-lg button_center" onclick="summary()">Подсчёт</button>
+    <div class="input-group mb-3 width40 form_center margin_top">
+        <div class="input-group-prepend">
+        </div>
+        <p id="result" type="text" class="form-control" aria-label="Username"
+               aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3 width40 form_center">
+        <div class="input-group-prepend">
+        </div>
+        <p id="survives" type="text" class="form-control" aria-label="Username"
+               aria-describedby="basic-addon1">
+    </div>
+
+    <!--    <p id="result"></p>-->
+    <!--    <p id="survives"></p>-->
+    <div class="error_center margin_top100">
         <a href="error.html" type="button" class="btn btn-danger">Если что-то не работает</a>
     </div>
-    <script src="scripts/main.ts"></script>
 </div>
+<footer>
+    <div class="footer center">
+        <span class="text-muted">Made by MrDevil with plavnichki</span>
+    </div>
+</footer>
+<script type="text/javascript" src="scripts/main.js"></script>
 </body>
 </html>
