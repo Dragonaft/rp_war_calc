@@ -1,41 +1,48 @@
 function summary() {
-    var def_army = document.getElementById('def_army').value;
-    def_army = parseInt(def_army);
+    let def_army = document.getElementById('def_army').value;
+    def_army = parseFloat(def_army);
 
     let att_army = document.getElementById('att_army').value;
-    att_army = parseInt(att_army);
+    att_army = parseFloat(att_army);
 
     let def_buff = document.getElementById('def_buff').value;
-    def_buff = parseInt(def_buff);
+    def_buff = parseFloat(def_buff);
 
     let att_buff = document.getElementById('att_buff').value;
-    att_buff = parseInt(att_buff);
+    att_buff = parseFloat(att_buff);
 
     let def_supp = document.getElementById('def_supp').value;
-    def_supp = parseInt(def_supp);
+    def_supp = parseFloat(def_supp);
 
     let att_supp = document.getElementById('att_supp').value;
-    att_supp = parseInt(att_supp);
+    att_supp = parseFloat(att_supp);
 
     let def_build = document.getElementById('def_build').value;
-    def_build = parseInt(def_build);
+    def_build = parseFloat(def_build);
 
     let att_gen = document.getElementById('att_gen').value;
-    att_gen = parseInt(att_gen);
+    att_gen = parseFloat(att_gen);
 
     let def_wall = document.getElementById('def_wall').value;
-    def_wall = parseInt(def_wall);
+    def_wall = parseFloat(def_wall);
 
     let def_terran = document.getElementById('def_terran').value;
-    def_terran = parseInt(def_terran);
+    def_terran = parseFloat(def_terran);
 
     let def_gen = document.getElementById('def_gen').value;
-    def_gen = parseInt(def_gen);
+    def_gen = parseFloat(def_gen);
+
+    console.log(att_army);
+    console.log(att_supp);
+    console.log(att_buff);
+    console.log(att_gen);
 
     let def_power,att_power,survives,result;
 
     def_power = def_army * def_buff * def_supp * (def_build + def_wall + def_terran + def_gen);
+    console.log(def_power);
     att_power = att_army * att_buff * att_supp * att_gen;
+    console.log(att_power);
     result = att_power - def_power;
 
     if (att_power > def_power){
