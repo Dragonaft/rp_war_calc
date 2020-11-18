@@ -47,20 +47,24 @@
         <span class="input-group-text">Эффект от баффа</span>
     </div>
 </div>
-<div class="input-group mb-3">
-    <div class="input-group-prepend">
-        <span class="input-group-text">Коофициент снабжения</span>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="def_supp">З. Снабжение</label>
+        </div>
+        <select class="custom-select" id="def_supp">
+            <option selected>Choose...</option>
+            <option value="0">Есть</option>
+            <option value="1">Нет</option>
+        </select>
+        <select class="custom-select" id="att_supp">
+            <option selected>Choose...</option>
+            <option value="0">Есть</option>
+            <option value="1">Нет</option>
+        </select>
+        <div class="input-group-append">
+            <label class="input-group-text" for="att_supp">А. Снабжение</label>
+        </div>
     </div>
-    <input type="text" id="def_supp" class="form-control" aria-label="Sizing example input"
-           aria-describedby="inputGroup-sizing-default">
-    <div class="width30">
-    </div>
-    <input type="text" id="att_supp" class="form-control" aria-label="Recipient's username"
-           aria-describedby="basic-addon2">
-    <div class="input-group-append">
-        <span class="input-group-text">Коофициент снабжения</span>
-    </div>
-</div>
 <div class="input-group mb-3">
     <div class="input-group-prepend">
                 <span class="input-group-text">Здание с
@@ -73,9 +77,15 @@
     <div class="input-group mb-3" style="width: 584px">
         <select class="custom-select" id="att_gen">
             <option selected>Choose...</option>
-            <option value="0">aplha</option>
-            <option value="1">beta</option>
-            <option value="2">zet</option>
+            <option value="0">Соня/жрец</option>
+            <option value="1">Рыцарь-череп/Рыцарь-смерти</option>
+            <option value="2">Майрон/Паладин</option>
+            <option value="3">Гатс/Берсерк</option>
+            <option value="4">Бубун/Варвар</option>
+            <option value="5">Бладис/чернокнижник</option>
+            <option value="6">Сергио/Разбойник</option>
+            <option value="7">Пендальф/Маг</option>
+            <option value="8">Леогнид/Воин</option>
         </select>
         <div class="input-group-append">
             <label class="input-group-text" for="att_gen">А. Генерал</label>
@@ -83,11 +93,17 @@
     </div>
 </div>
 <div class="input-group mb-3">
-    <div class="input-group-prepend">
-        <span class="input-group-text">Коофициент стены</span>
+    <div class="input-group mb-3" style="width: 590px">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="def_gen">Стена</label>
+        </div>
+        <select class="custom-select" id="def_wall">
+            <option selected>Choose...</option>
+            <option value="0">Есть</option>
+            <option value="1">Нет</option>
+
+        </select>
     </div>
-    <input id="def_wall" type="text" class="form-control" aria-label="Sizing example input"
-           aria-describedby="inputGroup-sizing-default">
     <div class="kostil2">
     </div>
 </div>
@@ -103,13 +119,19 @@
 <div class="input-group mb-3">
     <div class="input-group mb-3" style="width: 590px">
         <div class="input-group-prepend">
-            <label class="input-group-text" for="deff_gen">З. Генерал</label>
+            <label class="input-group-text" for="def_gen">З. Генерал</label>
         </div>
-        <select class="custom-select" id="deff_gen">
+        <select class="custom-select" id="def_gen">
             <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="0">Соня/жрец</option>
+            <option value="1">Рыцарь-череп/Рыцарь-смерти</option>
+            <option value="2">Майрон/Паладин</option>
+            <option value="3">Гатс/Берсерк</option>
+            <option value="4">Бубун/Варвар</option>
+            <option value="5">Бладис/чернокнижник</option>
+            <option value="6">Сергио/Разбойник</option>
+            <option value="7">Пендальф/Маг</option>
+            <option value="8">Леогнид/Воин</option>
         </select>
     </div>
     <div class="kostil2">

@@ -10,6 +10,15 @@ const generals = [
     {id:8, name: 'Леогнид/Воин', gen_att: 1.3, gen_def: 1.1}
 ];
 
+const wall = [
+    {id:0, def_wall:1},
+    {id:1, def_wall:0},
+]
+
+const supp = [
+    {id:0, supply: 1},
+    {id:1, supply: 0.5}
+]
 let current_phase = 0;
 
 let game_phase = 1;
@@ -22,8 +31,14 @@ let att_power;
 
 let survives;
 
+
+
 function summary() {
     console.log('generals:', generals)
+
+    let nick_name1;
+
+    let nick_name2;
 
     let def_nick = document.getElementById('def_nick').value;
     console.log(def_nick);
@@ -43,36 +58,29 @@ function summary() {
     let att_buff = document.getElementById('att_buff').value;
     att_buff = parseFloat(att_buff);
 
-    let def_supp = document.getElementById('def_supp').value;
-    def_supp = parseFloat(def_supp);
+    let def_supp_value = document.getElementById('def_supp').value;
 
-    let att_supp = document.getElementById('att_supp').value;
-    att_supp = parseFloat(att_supp);
+    let att_supp_value = document.getElementById('att_supp').value;
 
     let def_build = document.getElementById('def_build').value;
     def_build = parseFloat(def_build);
 
-    let def_wall = document.getElementById('def_wall').value;
-    def_wall = parseFloat(def_wall);
+    let wall_value = document.getElementById('def_wall').value;
 
     let def_terran = document.getElementById('def_terran').value;
     def_terran = parseFloat(def_terran);
 
     let att_value = document.getElementById('att_gen').value;
-    let def_value = document.getElementById('deff_gen').value;
+    let def_value = document.getElementById('def_gen').value;
 
 
     let att_gen = generals[att_value];
     let def_gen = generals[def_value];
+    let def_wall = wall[wall_value]
+    let def_supp = supp[def_supp_value];
+    let att_supp = supp[att_supp_value];
 
     // let test_att = att_gen[0];
-    console.log('staff', att_gen);
-    console.log('staff2', def_gen);
-
-    console.log('logggg', att_gen.gen_att);
-    console.log(att_army);
-    console.log(att_supp);
-    console.log(att_buff);
 
     current_phase++;
 
@@ -80,15 +88,49 @@ function summary() {
         morale = morale - 0.05;
         console.log(morale);
         game_phase++;
+        if (att_gen.id === 1){
+          let rand = getRandomInt(100)
+            if (rand <= 20){
+                alert('Ход пропущен');
+                game_phase++;
+            }
+        }
+        if (def_gen.id === 1){
+            let rand = getRandomInt(100)
+            if (rand <= 20){
+                alert('Ход пропущен');
+                game_phase++;
+            }
+        }
     }
 
-    power(att_army ,att_supp, att_gen, att_buff, def_army, def_supp, def_buff, def_build, def_wall, def_terran, def_gen);
-    survivals(att_power, att_army, att_supp, att_gen, att_buff, def_power, def_supp, def_buff, def_build, def_wall, def_terran, def_gen);
+    if (att_gen.id === 2 && att_gen.gen_def < 3 && game_phase >= 2){
+       att_gen.gen_def = att_gen.gen_def + 0.5;
+    }
+    if (def_gen.id === 2 && def_gen.gen_def < 3 && game_phase >= 2){
+        def_gen.gen_def = def_gen.gen_def + 0.5;
+    }
+
+    if (att_gen.id === 7){
+        def_gen.gen_def = def_gen.gen_def - 0.3;
+    }
+    if (def_gen.id === 7){
+        att_gen.gen_def = att_gen.gen_def - 0.3;
+    }
+
+    power(att_army ,att_supp.supply, att_gen, att_buff, def_army, def_supp.supply, def_buff, def_build, def_wall.def_wall, def_terran, def_gen);
+    survivals(att_power, att_army, att_supp.supply, att_gen, att_buff, def_power, def_supp.supply, def_buff, def_build, def_wall.def_wall, def_terran, def_gen);
 
 
     if (att_gen.id === 1){
         if (current_phase % 2 === 0){
-            survives = survives * 0.4;
+            survives = survives * 1.4;
+        }
+    }
+
+    if (def_gen.id === 1){
+        if (current_phase % 2 === 0){
+            survives = survives * 1.4;
         }
     }
 
@@ -102,7 +144,18 @@ function power(att_army ,att_supp, att_gen, att_buff, def_army, def_supp, def_bu
     console.log(def_power);
     att_power = att_army * att_supp * (att_gen.gen_att + att_buff);
     console.log(att_power);
-
+    if (att_gen.id === 3){
+        let rand = getRandomInt(100)
+        if (rand <= 50){
+            att_power = att_power * 1.5;
+        }
+    }
+    if (def_gen.id === 3){
+        let rand = getRandomInt(100)
+        if (rand <= 50){
+            def_power = def_power * 1.5;
+        }
+    }
     return att_power, def_power;
 }
 
@@ -113,8 +166,11 @@ function survivals(att_power, att_army, att_supp, att_gen, att_buff, def_power, 
     if (att_power > def_power) {
         document.getElementById('result').innerHTML = 'Победа атакующего';
         survives = result / (att_supp * (att_gen.gen_att + att_buff));
-        document.getElementById('survives').innerHTML = 'Выжившие: ' + survives;
-        document.getElementById('def_army').value = survives.toString();
+        if (att_gen.id === 5){
+            survives = survives * 0.2;
+        }
+        document.getElementById('survives').innerHTML = 'Выжившие: ' + parseInt(survives);
+        document.getElementById('def_army').value = parseInt(survives).toString();
         document.getElementById('att_army').value = 0;
         document.getElementById('att_buff').value = 0;
         document.getElementById('att_supp').value = 0;
@@ -122,8 +178,15 @@ function survivals(att_power, att_army, att_supp, att_gen, att_buff, def_power, 
         document.getElementById('result').innerHTML = 'Победа защитника';
         result = result * -1;
         survives = result / ((def_supp * (def_buff + def_build + def_wall + def_terran + def_gen.gen_def)) / morale);
-        document.getElementById('survives').innerHTML = 'Выжившие: ' + survives;
+        if (def_gen.id === 5){
+            survives = survives * 0.2;
+        }
+        document.getElementById('survives').innerHTML = 'Выжившие: ' + parseInt(survives);
+        document.getElementById('att_army').value = parseInt(survives).toString();
     }
 
 }
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
