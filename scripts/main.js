@@ -1,5 +1,5 @@
 const generals = [
-    {id:0, name: 'Нет', gen_att: 0, gen_def: 0},
+    {id:0, name: 'Нет', gen_att: 1, gen_def: 1},
     {id:1, name: 'Соня/жрец', gen_att: 0.9, gen_def: 0.9},
     {id:2, name: 'Рыцарь-череп/Рыцарь-смерти', gen_att: 1.3, gen_def: 1.3},
     {id:3, name: 'Майрон/Паладин', gen_att: 1.1, gen_def: 1.5},
@@ -226,8 +226,7 @@ function survivals(att_power, att_army, att_supp, att_gen, att_buff, def_power, 
         }
         document.getElementById('survives').innerHTML = 'Выжившие: ' + parseInt(survives);
         document.getElementById('att_army').value = parseInt(survives).toString();
-        document.getElementById('def_army').value = att_army;
-        document.getElementById('att_army').value = 0;
+        document.getElementById('def_army').value = 0;
     }
 
 }
