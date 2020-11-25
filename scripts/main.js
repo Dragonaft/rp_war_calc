@@ -8,7 +8,12 @@ const generals = [
     {id:6, name: 'Бладис/чернокнижник', gen_att: 1.1, gen_def: 1.4},
     {id:7, name: 'Сергио/Разбойник', gen_att: 0.8, gen_def: 1},
     {id:8, name: 'Пендальф/Маг', gen_att: 1, gen_def: 0.8},
-    {id:9, name: 'Леогнид/Воин', gen_att: 1.3, gen_def: 1.1}
+    {id:9, name: 'Леогнид/Воин', gen_att: 1.3, gen_def: 1.1},
+    {id:10, name: 'Армисаил, Утроба', gen_att: 1.2, gen_def: 1.2},
+    {id:11, name: 'Бардиил, Увядание', gen_att: 1, gen_def: 1},
+    {id:12, name: 'Сакахиил, Громовые Небеса', gen_att: 1.1, gen_def: 1.3},
+    {id:13, name: 'Ариил, Небесный Принц', gen_att: 0.1, gen_def: 1.5},
+    {id:14, name: 'Ариил, Восстание', gen_att: 1.1, gen_def: 1.1},
 ];
 
 const wall = [
@@ -54,12 +59,14 @@ const buffs_att = [
     {id:0, name:'Нет', buff:0},
     {id:1, name:'Малое зелье битвы', buff:0.5},
     {id:2, name:'Большое зелье битвы', buff:1},
+    {id:3, name:'Варево Каламитас', buff:0.4},
 ]
 
 const buffs_def = [
     {id:0, name:'Нет', buff:0},
     {id:1, name:'Малое зелье защиты', buff:0.2},
     {id:2, name:'Большое зелье защиты', buff:0.4},
+    {id:3, name:'Варево Каламитас', buff:0.4},
 ]
 
 let current_phase = 0;
@@ -79,10 +86,8 @@ let survives;
 function summary() {
 
     let def_nick = document.getElementById('def_nick').value;
-    console.log(def_nick);
 
     let att_nick = document.getElementById('att_nick').value;
-    console.log(att_nick);
 
     let def_army = document.getElementById('def_army').value;
     def_army = parseFloat(def_army);
@@ -98,8 +103,7 @@ function summary() {
 
     let att_supp_value = document.getElementById('att_supp').value;
 
-    let def_build = document.getElementById('def_build').value;
-    def_build = parseFloat(def_build);
+    let def_build_value = document.getElementById('def_build').value;
 
     let wall_value = document.getElementById('def_wall').value;
 
@@ -109,29 +113,25 @@ function summary() {
 
     let def_value = document.getElementById('def_gen').value;
 
-
     let att_gen = generals[att_value];
     let def_gen = generals[def_value];
     let def_wall = wall[wall_value]
     let def_supp = supp[def_supp_value];
     let att_supp = supp[att_supp_value];
     let att_buff = buffs_att[att_buff_value];
-    let def_buff = buffs_att[def_buff_value];
+    let def_buff = buffs_def[def_buff_value];
     let def_terran = terran[def_terran_value];
-
-
-    // let test_att = att_gen[0];
+    let def_build = buildings[def_build_value];
 
     current_phase++;
 
     if (current_phase % 2 === 0){
         morale = morale - 0.05;
-        console.log(morale);
         game_phase++;
         if (att_gen.id === 1){
             let rand = getRandomInt(100)
             if (rand <= 20){
-                alert('Ход пропущен');
+                alert('Ход пропущен');                  //абилка рыцаря смерти
                 game_phase++;
             }
         }
@@ -158,9 +158,12 @@ function summary() {
         att_gen.gen_def = att_gen.gen_def - 0.3;
     }
 
-    power(att_army ,att_supp.supply, att_gen, att_buff.buff, def_army, def_supp.supply, def_buff.buff, def_build, def_wall.def_wall, def_terran.def_val_t, def_gen);
-    survivals(att_power, att_army, att_supp.supply, att_gen, att_buff.buff, def_power, def_supp.supply, def_buff.buff, def_build, def_wall.def_wall, def_terran.def_val_t, def_gen);
+    if (att_buff.id === 3){             //абилка варева каламатис
+        def_build.def_val = 0;
+    }
 
+    power(att_army ,att_supp.supply, att_gen, att_buff.buff, def_army, def_supp.supply, def_buff.buff, def_build.def_val, def_wall.def_wall, def_terran.def_val_t, def_gen);
+    survivals(att_power, att_army, att_supp.supply, att_gen, att_buff.buff, def_power, def_supp.supply, def_buff.buff, def_build.def_val, def_wall.def_wall, def_terran.def_val_t, def_gen);
 
     if (att_gen.id === 1){
         if (current_phase % 2 === 0){
@@ -174,9 +177,7 @@ function summary() {
         }
     }
 
-    console.log('deeeeeffff',def_army)
     document.getElementById('def_nick').value = att_nick;
-
     document.getElementById('att_nick').value = def_nick;
     document.getElementById('phase').innerHTML = 'Текущий код:' + game_phase;
 }
@@ -184,9 +185,8 @@ function summary() {
 function power(att_army ,att_supp, att_gen, att_buff, def_army, def_supp, def_buff, def_build, def_wall, def_terran, def_gen) {
 
     def_power = (def_army * def_supp * (def_build + def_wall + def_terran + def_gen.gen_def + def_buff)) * morale;
-    console.log(def_power);
     att_power = att_army * att_supp * (att_gen.gen_att + att_buff);
-    console.log(att_power);
+
     if (att_gen.id === 3){
         let rand = getRandomInt(100)
         if (rand <= 50){
